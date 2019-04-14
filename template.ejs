@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%= dirname %>
+    </title>
+    <style>
+        html,
+        body {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .title {
+            width: 100%;
+            height: 64px;
+            font-size: 24px;
+            line-height: 64px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.65);
+            position: sticky;
+            position: -webkit-sticky;
+            top: 0px;
+        }
+
+        .title>a {
+            color: rgba(0, 0, 0, 0.65);
+            font-size: 32px;
+            text-decoration: none;
+        }
+        .title>.return {
+            float: left;
+            margin-left: 24px;
+        }
+        .title>.next {
+            float: right;
+            margin-right: 24px;
+        }
+
+        .title>a:hover {
+            color: #1890FF;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .href {
+            position: fixed;
+            width: 60px;
+            height: 144px;
+            border-radius: 4px;
+            line-height: 144px;
+            background: rgba(255, 255, 255, 0.65);
+            bottom: 40px;
+            right: 40px;
+            text-align: center;
+            text-decoration: none;
+            color: rgba(0, 0, 0, 0.65);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .href:hover {
+            box-shadow: 0 4px 12px rgba(24,144,255,0.45);
+        }
+
+        .href::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 14px;
+            border-width: 0 16px 12px;
+            border-style: solid;
+            border-color: transparent transparent rgba(0, 0, 0, 0.65);
+        }
+        img {
+            max-width: 100vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">
+        <a title="上一话" class="return" href="<%= prev %>"><</a>
+        <a title="回到首页" href="<%= home %>"><%=dirname %></a>
+        <a title="下一话" class="next" href="<%= next %>">></a>
+    </div>
+    <div class="content">
+        <% imgs.forEach(function(img){ %>
+        <%- include('img/template', {img: img}); %>
+        <% }); %>
+    </div>
+    <a id="top" href="" class="href">TOP</a>
+    <script>
+        document.getElementById('top').addEventListener('click', () => {
+            document.body.scrollTo(0, 0);
+        })
+    </script>
+</body>
+
+</html>

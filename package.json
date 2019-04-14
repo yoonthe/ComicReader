@@ -1,0 +1,15 @@
+{
+  "name": "reader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "getIndex.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yoonthe",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^10.12.18",
+    "ejs": "^2.6.1"
+  }
+}
