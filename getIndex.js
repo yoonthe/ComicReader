@@ -69,8 +69,14 @@ const answerHandler = answer => {
     const index = Path.join(answer, 'index.html');
     fs.access(answer)
         .then(() => generateReader(answer, answer))
-        .then(menus => ejs.renderFile('menu.ejs', { menus, dirname: Path.basename(answer) }))
-        .then(data => fs.writeFile(index, data, 'utf8'))
+        .then(menus => {
+            if (Array.isArray(menus)) {
+                return ejs.renderFile('menu.ejs', { menus, dirname: Path.basename(answer) });
+            } else {
+                return false;
+            }
+        })
+        .then(data => data !== false && fs.writeFile(index, data, 'utf8'))
         .then(() => {
             console.log('生成完成！请在浏览器内访问:', index);
             rl.close();
