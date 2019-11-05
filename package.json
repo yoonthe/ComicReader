@@ -8,6 +8,9 @@
     "start": "node getIndex"
   },
   "author": "Yoonthe",
+  "bin": {
+    "comicReader": "./index.js"
+  },
   "license": "ISC",
   "dependencies": {
     "@types/node": "^10.12.18",
